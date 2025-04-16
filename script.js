@@ -22,4 +22,12 @@ const getComputerChoice = () => {
   return computerChoice;
 };
 
-console.log(getComputerChoice());
+// Create a new function named getHumanChoice
+const getHumanChoice = () => {
+  // Write the code so that getHumanChoice will return one of the valid choices depending on what the user inputs.
+
+  // prompt the user to input choice
+  humanChoice = prompt('Rock? Paper? Scissors? Shoot:');
+};
+
+console.log(getHumanChoice());
