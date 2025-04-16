@@ -30,4 +30,7 @@ const getHumanChoice = () => {
   humanChoice = prompt('Rock? Paper? Scissors? Shoot:');
 };
 
-console.log(getHumanChoice());
+// Create two new variables named humanScore and computerScore in the global scope
+// Initialize those variables with the value of 0
+let humanScore = 0;
+let computerScore = 0;
