@@ -2,6 +2,8 @@
 // Your game will be played against the computer. You will write a function that randomly returns “rock”, “paper” or “scissors”.
 let computerChoice = '';
 let humanChoice = '';
+let humanScore = 0;
+let computerScore = 0;
 
 // Create a new function named getComputerChoice.
 const getComputerChoice = () => {
