@@ -50,13 +50,18 @@ const playRound = (humanChoice, computerChoice) => {
       computerChoice === 'paper')
   ) {
     msg = `You win! ${humanChoice} beats ${computerChoice}!`;
+    humanScore++;
   } else if (caseInsensitiveHumanChoice === computerChoice) {
     msg = "It's a tie!";
   } else {
     msg = `You lose. ${computerChoice} beats ${caseInsensitiveHumanChoice}`;
+    computerScore++;
   }
 
   console.log(msg);
+  console.log(
+    `your score: ${humanScore} | computer score: ${computerScore}`
+  );
 };
 
 playRound(humanChoice, computerChoice);
