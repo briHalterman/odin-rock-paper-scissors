@@ -1,5 +1,7 @@
 // Step 2: Write the logic to get the computer choice
 // Your game will be played against the computer. You will write a function that randomly returns “rock”, “paper” or “scissors”.
+let computerChoice = '';
+let humanChoice = '';
 
 // Create a new function named getComputerChoice.
 const getComputerChoice = () => {
@@ -9,7 +11,7 @@ const getComputerChoice = () => {
   console.log(randomNumber);
 
   // use if/else to assign a computer choice based on random number
-  let computerChoice = '';
+  let humanChoice = '';
 
   if (randomNumber === 0) {
     computerChoice = 'rock';
@@ -18,6 +20,17 @@ const getComputerChoice = () => {
   } else if (randomNumber === 2) {
     computerChoice = 'scissors';
   }
-  console.log(computerChoice);
+  return computerChoice;
 };
+
+const getHumanChoice = () => {
+  msg = 'Rock? Paper? Scissors? Shoot!';
+  humanChoice = prompt(msg);
+  return humanChoice;
+};
+getComputerChoice();
+console.log(computerChoice);
+
+getHumanChoice();
+console.log(humanChoice);
 // Test that your function returns what you expect using console.log or the browser developer tools before advancing to the next step.
