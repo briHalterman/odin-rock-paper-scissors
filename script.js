@@ -30,9 +30,34 @@ const getHumanChoice = () => {
   humanChoice = prompt(msg);
   return humanChoice;
 };
+
 getComputerChoice();
 console.log(computerChoice);
 
 getHumanChoice();
 console.log(humanChoice);
+
+const playRound = (humanChoice, computerChoice) => {
+  let caseInsensitiveHumanChoice = humanChoice.toLowerCase();
+  let msg = '';
+
+  if (
+    (caseInsensitiveHumanChoice === 'rock' &&
+      computerChoice === 'scissors') ||
+    (caseInsensitiveHumanChoice === 'paper' &&
+      computerChoice === 'rock') ||
+    (caseInsensitiveHumanChoice === 'scissors' &&
+      computerChoice === 'paper')
+  ) {
+    msg = `You win! ${humanChoice} beats ${computerChoice}!`;
+  } else if (caseInsensitiveHumanChoice === computerChoice) {
+    msg = "It's a tie!";
+  } else {
+    msg = `You lose. ${computerChoice} beats ${caseInsensitiveHumanChoice}`;
+  }
+
+  console.log(msg);
+};
+
+playRound(humanChoice, computerChoice);
 // Test that your function returns what you expect using console.log or the browser developer tools before advancing to the next step.
