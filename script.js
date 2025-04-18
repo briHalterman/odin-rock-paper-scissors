@@ -31,15 +31,15 @@ const getHumanChoice = () => {
   return humanChoice;
 };
 
-getComputerChoice();
-console.log(computerChoice);
-
-getHumanChoice();
-console.log(humanChoice);
-
 const playRound = (humanChoice, computerChoice) => {
   let caseInsensitiveHumanChoice = humanChoice.toLowerCase();
   let msg = '';
+
+  getComputerChoice();
+  console.log(computerChoice);
+
+  getHumanChoice();
+  console.log(humanChoice);
 
   if (
     (caseInsensitiveHumanChoice === 'rock' &&
@@ -64,5 +64,26 @@ const playRound = (humanChoice, computerChoice) => {
   );
 };
 
-playRound(humanChoice, computerChoice);
+const playGame = () => {
+  let msg = '';
+
+  playRound(humanChoice, computerChoice);
+  playRound(humanChoice, computerChoice);
+  playRound(humanChoice, computerChoice);
+  playRound(humanChoice, computerChoice);
+  playRound(humanChoice, computerChoice);
+
+  if (humanScore > computerScore) {
+    msg = `You win the game! your score: ${humanScore} | computer score: ${computerScore}`;
+  } else if (humanScore === computerScore) {
+    msg = `It's a tied game. your score: ${humanScore} | computer score: ${computerScore}`;
+  } else {
+    msg = `You lose the game. your score: ${humanScore} | computer score: ${computerScore}`;
+  }
+
+  console.log(msg);
+};
+
+playGame();
+
 // Test that your function returns what you expect using console.log or the browser developer tools before advancing to the next step.
