@@ -6,6 +6,9 @@ const roundMessageElement = document.getElementById("roundMessage");
 const gameOverMessageElement =
   document.getElementById("gameOverMessage");
 
+const resetButton = document.getElementById("reset");
+let choiceButtons = document.querySelectorAll(".choice");
+
 const getComputerChoice = () => {
   const randomNumber = Math.floor(Math.random() * 3);
 
@@ -48,14 +51,22 @@ const playRound = (humanChoice) => {
     }
 
     gameOverMessageElement.textContent = gameOverMessage;
+
+    choiceButtons.forEach((button) => (button.disabled = true));
   }
 };
 
-let buttons = document.querySelectorAll("button");
-
-buttons.forEach((button) => {
+choiceButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     const humanChoice = event.target.textContent;
     playRound(humanChoice);
   });
+});
+
+resetButton.addEventListener("click", () => {
+  humanScore = 0;
+  computerScore = 0;
+  roundMessageElement.textContent = "";
+  gameOverMessageElement.textContent = "";
+  choiceButtons.forEach((button) => (button.disabled = false));
 });
