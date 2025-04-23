@@ -1,95 +1,61 @@
-// Declare global variables
-let computerChoice = '';
-let humanChoice = '';
+let computerChoice = "";
 let humanScore = 0;
 let computerScore = 0;
 
-// Function to get computer's choice
+const roundMessageElement = document.getElementById("roundMessage");
+const gameOverMessageElement =
+  document.getElementById("gameOverMessage");
+
 const getComputerChoice = () => {
   const randomNumber = Math.floor(Math.random() * 3);
 
-  let humanChoice = '';
-
   if (randomNumber === 0) {
-    computerChoice = 'rock';
+    computerChoice = "Rock";
   } else if (randomNumber === 1) {
-    computerChoice = 'paper';
+    computerChoice = "Paper";
   } else if (randomNumber === 2) {
-    computerChoice = 'scissors';
+    computerChoice = "Scissors";
   }
 };
 
-// Function to get human's choice
-const getHumanChoice = () => {
-  msg = 'Rock? Paper? Scissors? Shoot!';
-  humanChoice = prompt(msg);
-};
-
-const playRound = (humanChoice, computerChoice) => {
-  let caseInsensitiveHumanChoice = humanChoice.toLowerCase();
-  let msg = '';
-
+const playRound = (humanChoice) => {
   getComputerChoice();
-  getHumanChoice();
+  let msg = "";
+  let gameOverMessage = "";
 
   if (
-    (caseInsensitiveHumanChoice === 'rock' &&
-      computerChoice === 'scissors') ||
-    (caseInsensitiveHumanChoice === 'paper' &&
-      computerChoice === 'rock') ||
-    (caseInsensitiveHumanChoice === 'scissors' &&
-      computerChoice === 'paper')
+    (humanChoice === "Rock" && computerChoice === "Scissors") ||
+    (humanChoice === "Paper" && computerChoice === "Rock") ||
+    (humanChoice === "Scissors" && computerChoice === "Paper")
   ) {
-    let capitalizedHumanChoice =
-      caseInsensitiveHumanChoice.charAt(0).toUpperCase() +
-      caseInsensitiveHumanChoice.slice(1);
-    msg = `You win! ${capitalizedHumanChoice} beats ${computerChoice}!`;
     humanScore++;
-  } else if (caseInsensitiveHumanChoice === computerChoice) {
+    msg = `You win! ${humanChoice} beats ${computerChoice}!`;
+  } else if (humanChoice === computerChoice) {
     msg = "It's a tie!";
   } else {
-    let capitalizedComputerChoice =
-      computerChoice.charAt(0).toUpperCase() +
-      computerChoice.slice(1);
-    msg = `You lose. ${capitalizedComputerChoice} beats ${caseInsensitiveHumanChoice}.`;
     computerScore++;
+    msg = `You lose. ${computerChoice} beats ${humanChoice}.`;
   }
 
-  console.log(msg);
-  console.log(
-    `Your score: ${humanScore} | Computer score: ${computerScore}`
-  );
-};
+  const roundMessage = `${msg} Your score: ${humanScore} | Computer score: ${computerScore}`;
+  roundMessageElement.textContent = roundMessage;
 
-const playGame = () => {
-  let msg = '';
+  if (humanScore === 5 || computerScore === 5) {
+    if (humanScore > computerScore) {
+      gameOverMessage = ` Congratulations! You win the game!`;
+    } else {
+      gameOverMessage = ` GAME OVER! You lose the game.`;
+    }
 
-  console.log("Let's play the game! Round one:");
-  playRound(humanChoice, computerChoice);
-
-  console.log('Round two:');
-  playRound(humanChoice, computerChoice);
-
-  console.log('Round three:');
-  playRound(humanChoice, computerChoice);
-
-  console.log('Round four:');
-  playRound(humanChoice, computerChoice);
-
-  console.log('Round five:');
-  playRound(humanChoice, computerChoice);
-
-  if (humanScore > computerScore) {
-    msg = `Congratulations! You win the game! Your score: ${humanScore} | Computer score: ${computerScore}`;
-  } else if (humanScore === computerScore) {
-    msg = `It's a tied game. Your score: ${humanScore} | Computer score: ${computerScore}`;
-  } else {
-    msg = `GAME OVER! You lose the game. Your score: ${humanScore} | Computer score: ${computerScore}`;
+    gameOverMessageElement.textContent = gameOverMessage;
   }
-
-  console.log(msg);
 };
 
-playGame();
+let buttons = document.querySelectorAll("button");
 
-// Test that your function returns what you expect using console.log or the browser developer tools before advancing to the next step.
+buttons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const humanChoice = event.target.textContent;
+    playRound(humanChoice);
+  });
+});
